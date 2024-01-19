@@ -1,40 +1,46 @@
 import java.util.Scanner;
 
 public class Calculator {
-
     public static void main(String[] args) {
-        Scanner reader = new Scanner(System.in);
-        System.out.print("Enter two numbers for your calculation: ");
-        // nextDouble() reads the next double from the keyboard
-        double first = reader.nextDouble();
-        double second = reader.nextDouble();
-        System.out.print("Enter an operator (+, -, *, /): ");
-        char operator = reader.next().charAt(0);
-        double result;
-        // switch case for each of the operations
+        Scanner scanner = new Scanner(System.in);
+
+        double num1, num2, result;
+        char operator;
+
+        System.out.print("Enter first number: ");
+        num1 = scanner.nextDouble();
+
+        System.out.print("Enter an operator to perform your calculation (+, -, *, /): ");
+        operator = scanner.next().charAt(0);
+
+        System.out.print("Enter second number: ");
+        num2 = scanner.nextDouble();
+
         switch (operator) {
             case '+':
-                result = first + second;
+                result = num1 + num2;
+                System.out.println("Result: " + result);
                 break;
             case '-':
-                result = first - second;
+                result = num1 - num2;
+                System.out.println("Result: " + result);
                 break;
             case '*':
-                result = first * second;
+                result = num1 * num2;
+                System.out.println("Result: " + result);
                 break;
             case '/':
-                result = first / second;
+                if (num2 != 0) {
+                    result = num1 / num2;
+                    System.out.println("Your Result is: " + result);
+                } else {
+                    System.out.println("Error: Cannot divide by zero.");
+                }
                 break;
-            // operator doesn't match any case constant (+, -, *, /)
-
             default:
-                System.out.printf("Error! please provide a valid operator");
-                reader.close();
-                return;
+                System.out.println("Error: Invalid operator.");
         }
-        // printing the final result
-        System.out.printf("%.1f %c %.1f = %.1f", first, operator, second, result);
 
-        reader.close();
+        scanner.close();
     }
 }
